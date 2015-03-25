@@ -5,6 +5,11 @@ namespace TicTacToe
    class Play
    {
       public enum Status { CONTINUE, WIN, LOSE, TIE }
+      private CreateBoard firstGame;
+      public Play() 
+      {
+         firstGame = new CreateBoard();
+      }
 
       public static int GetMove()
       {
@@ -14,14 +19,15 @@ namespace TicTacToe
   
       public static void Main(string[] args)
       {
+         Play play = new Play();
          Status gameStatus = Status.CONTINUE;
-         CreateBoard firstGame = new CreateBoard();
-         firstGame.DrawBoard();
+         
+         play.firstGame.DrawBoard();
          int position0 = 0, position1 = 1, position2 = 2, position3 = 3, position4 = 4, position5 = 5, position6 = 6, position7 = 7, position8 = 8;
          Console.WriteLine("Well hello there. \nYou look to be a human of above average intelligence. \nLet's play a round of Tic Tac Toe. I'll be 'o' and you'll be 'x'. \nYou know what? I'll let you go first.\n");
 
          int humanMove = GetMove();
-         while(firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+         while(play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
          {
             Console.Write("That spot's already taken. ");
             humanMove = GetMove();
@@ -67,10 +73,10 @@ namespace TicTacToe
                position8 = 0;
             }
 
-            firstGame.SetNewPiece(position4, Convert.ToChar("o"));
-            firstGame.DrawBoard();
+            play.firstGame.SetNewPiece(position4, Convert.ToChar("o"));
+            play.firstGame.DrawBoard();
             humanMove = GetMove();
-            while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+            while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
             {
                Console.Write("That spot's already taken. ");
                humanMove = GetMove();
@@ -78,10 +84,10 @@ namespace TicTacToe
 
             if (humanMove == position1)
             {
-               firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
@@ -89,10 +95,10 @@ namespace TicTacToe
 
                if (humanMove == position6)
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
@@ -100,10 +106,10 @@ namespace TicTacToe
 
                   if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
@@ -111,321 +117,321 @@ namespace TicTacToe
 
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position2)
             {
-               firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position7)
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position3)
             {
-               firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position2)
                {
-                  firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position7)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position5)
             {
-               firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position1)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position6)
             {
-               firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position5)
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position7)
             {
-               firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position3)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position8)
             {
-               firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position7)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position3)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
@@ -469,351 +475,351 @@ namespace TicTacToe
                position7 = 1;
                position8 = 0;
             }
-            firstGame.SetNewPiece(position4, Convert.ToChar("o"));
-            firstGame.DrawBoard();
+            play.firstGame.SetNewPiece(position4, Convert.ToChar("o"));
+            play.firstGame.DrawBoard();
             humanMove = GetMove();
-            while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+            while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
             {
                Console.Write("That spot's already taken. ");
                humanMove = GetMove();
             }
             if (humanMove == position0)
             {
-               firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position6)
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position2)
             {
-               firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position8)
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position3)
             {
-               firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position2)
                {
-                  firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position5)
             {
-               firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position0)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position6)
             {
-               firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position5)
                {
-                  firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position0)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position7)
             {
-               firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position0)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position8)
             {
-               firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position3)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
@@ -821,775 +827,775 @@ namespace TicTacToe
          //IF THE FIRST HUMAN MOVE IS THE CENTER
          else
          {
-            firstGame.SetNewPiece(position0, Convert.ToChar("o"));
-            firstGame.DrawBoard();
+            play.firstGame.SetNewPiece(position0, Convert.ToChar("o"));
+            play.firstGame.DrawBoard();
             humanMove = GetMove();
-            while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+            while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
             {
                Console.Write("That spot's already taken. ");
                humanMove = GetMove();
             }
             if (humanMove == position1)
             {
-               firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position2)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else if (humanMove == position3)
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position6)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else if (humanMove == position5)
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else if (humanMove == position6)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position3)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else if (humanMove == position8)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position2)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
             }
             else if (humanMove == position2)
             {
-               firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position3)
                {
-                  firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position3)
             {
-               firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position1)
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position6)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else if (humanMove == position2)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position7)
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position7)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else if (humanMove == position6)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position8, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position8, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else if (humanMove == position7)
                {
-                  firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position2)
                   {
-                     firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else if (humanMove == position8)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position6)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
             }
             else if (humanMove == position5)
             {
-               firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position6)
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position1)
                   {
-                     firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position6)
             {
-               firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position1)
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position8)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position5)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position7)
             {
-               firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position2)
                {
-                  firstGame.SetNewPiece(position6, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position6, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position8)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      gameStatus = Status.LOSE;
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
             else if (humanMove == position8)
             {
-               firstGame.SetNewPiece(position2, Convert.ToChar("o"));
-               firstGame.DrawBoard();
+               play.firstGame.SetNewPiece(position2, Convert.ToChar("o"));
+               play.firstGame.DrawBoard();
                humanMove = GetMove();
-               while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+               while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.Write("That spot's already taken. ");
                   humanMove = GetMove();
                }
                if (humanMove == position1)
                {
-                  firstGame.SetNewPiece(position7, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position7, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   humanMove = GetMove();
-                  while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                  while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                   {
                      Console.Write("That spot's already taken. ");
                      humanMove = GetMove();
                   }
                   if (humanMove == position3)
                   {
-                     firstGame.SetNewPiece(position5, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position5, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position6)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position5)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position6)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                   else if (humanMove == position6)
                   {
-                     firstGame.SetNewPiece(position3, Convert.ToChar("o"));
-                     firstGame.DrawBoard();
+                     play.firstGame.SetNewPiece(position3, Convert.ToChar("o"));
+                     play.firstGame.DrawBoard();
                      humanMove = GetMove();
-                     while (firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+                     while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
                      {
                         Console.Write("That spot's already taken. ");
                         humanMove = GetMove();
                      }
                      if (humanMove == position5)
                      {
-                        firstGame.DrawBoard();
+                        play.firstGame.DrawBoard();
                         gameStatus = Status.TIE;
                      }
                   }
                }
                else
                {
-                  firstGame.SetNewPiece(position1, Convert.ToChar("o"));
-                  firstGame.DrawBoard();
+                  play.firstGame.SetNewPiece(position1, Convert.ToChar("o"));
+                  play.firstGame.DrawBoard();
                   gameStatus = Status.LOSE;
                }
             }
