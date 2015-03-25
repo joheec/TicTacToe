@@ -6,8 +6,7 @@ namespace TicTacToe
    {
       public enum Status { CONTINUE, WIN, LOSE, TIE }
       private CreateBoard firstGame;
-      public Play() 
-      {
+      public Play() {
          firstGame = new CreateBoard();
       }
 
