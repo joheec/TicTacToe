@@ -1,22 +1,11 @@
 using System;
+using System.Threading;
 
 namespace TicTacToe
 { 
    class CreateBoard
    {    
       char[] pieces = "012345678".ToCharArray();
-  
-      public bool SetNewPiece(int position, char pieceType)
-      {
-         if (pieces[position] == Convert.ToChar('x') || pieces[position] == Convert.ToChar('o'))
-            return true;
-         else
-         {
-            pieces[position] = pieceType;
-            return false;
-         }
-      }
-
 
       public void DrawBoard()
       {
@@ -41,23 +30,13 @@ namespace TicTacToe
          Console.WriteLine("\n");
       }
 
-   }
-   class Play
-   {
-      public enum Status { CONTINUE, WIN, LOSE, TIE }
-      private CreateBoard firstGame;
-      public Play() {
-         firstGame = new CreateBoard();
-      }
-
-      public static int GetMove()
+      public int GetMove()
       {
          Console.Write("Where do you want to put your 'x' ?> ");
          int humanMove = Convert.ToInt32(Console.ReadLine());
-         while (play.firstGame.SetNewPiece(humanMove, Convert.ToChar('x')))
+         while (SetNewPiece(humanMove, Convert.ToChar('x')))
          {
-            Console.Write("That spot's already taken.");
-            play.firstGame.DrawBoard();
+            Console.WriteLine("That spot's already taken. ");
             Console.Write("Where do you want to put your 'x' ?> ");
             humanMove = Convert.ToInt32(Console.ReadLine());
          }
@@ -65,37 +44,57 @@ namespace TicTacToe
          return humanMove;
       }
 
-      public static int ComputerMove(int position)
+      public bool SetNewPiece(int position, char pieceType)
       {
-         play.firstGame.SetNewPiece(position, Convert.ToChar("o"));
-         play.firstGame.DrawBoard();
+         if (pieces[position] == Convert.ToChar('x') || pieces[position] == Convert.ToChar('o'))
+         {
+            DrawBoard();
+            return true;
+         }
+         else
+         {
+            pieces[position] = pieceType;
+            DrawBoard();
+            return false;
+         }
+      }
+
+      public int ComputerMove(int position)
+      {
+         Thread.Sleep(1000);
+         Console.WriteLine("It's my turn.");
+         Thread.Sleep(2000);
+         SetNewPiece(position, Convert.ToChar("o"));
          int humanMove = GetMove();
          return humanMove;
       }
 
-      public static void Tie()
+   }
+   class Play
+   {
+      public enum Status { CONTINUE, WIN, LOSE, TIE }
+      
+      public static void Tie(ref Status gameStatus)
       {
-         play.firstGame.DrawBoard();
          gameStatus = Status.TIE;
       }
 
-      public static void Lose(int position)
+      public static void Lose(ref Status gameStatus, ref CreateBoard firstGame, int position)
       {
-         play.firstGame.SetNewPiece(position, Convert.ToChar("o"));
-         play.firstGame.DrawBoard();
+         firstGame.SetNewPiece(position, Convert.ToChar("o"));
          gameStatus = Status.LOSE;
       }
   
       public static void Main(string[] args)
       {
-         Play play = new Play();
+         CreateBoard firstGame = new CreateBoard();
          Status gameStatus = Status.CONTINUE;
          
-         play.firstGame.DrawBoard();
+         firstGame.DrawBoard();
          int position0 = 0, position1 = 1, position2 = 2, position3 = 3, position4 = 4, position5 = 5, position6 = 6, position7 = 7, position8 = 8;
          Console.WriteLine("Well hello there. \nYou look to be a human of above average intelligence. \nLet's play a round of Tic Tac Toe. I'll be 'o' and you'll be 'x'. \nYou know what? I'll let you go first.\n");
 
-         int humanMove = GetMove();
+         int humanMove = firstGame.GetMove();
 
 
          //FIRST HUMAN MOVE IS IN A CORNER
@@ -138,154 +137,154 @@ namespace TicTacToe
                position8 = 0;
             }
 
-            humanMove = ComputerMove(position4);
+            humanMove = firstGame.ComputerMove(position4);
 
             if (humanMove == position1)
             {
-               humanMove = ComputerMove(position2);
+               humanMove = firstGame.ComputerMove(position2);
 
                if (humanMove == position6)
                {
-                  humanMove = ComputerMove(position3);
+                  humanMove = firstGame.ComputerMove(position3);
                   if (humanMove == position5)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position5);
+                     Lose(ref gameStatus, ref firstGame, position5);
                   }
                }
                else
                {
-                  Lose(position6);
+                  Lose(ref gameStatus, ref firstGame, position6);
                }
             }
             else if (humanMove == position2)
             {
-               humanMove = ComputerMove(position1);
+               humanMove = firstGame.ComputerMove(position1);
                if (humanMove == position7)
                {
-                  humanMove = ComputerMove(position5);
+                  humanMove = firstGame.ComputerMove(position5);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position6);
-                     Tie();
+                     firstGame.ComputerMove(position6);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position3);
+                     Lose(ref gameStatus, ref firstGame, position3);
                   }
                }
                else
                {
-                  Lose(position7);
+                  Lose(ref gameStatus, ref firstGame, position7);
                }
             }
             else if (humanMove == position3)
             {
-               humanMove = ComputerMove(position6);
+               humanMove = firstGame.ComputerMove(position6);
                if (humanMove == position2)
                {
-                  humanMove = ComputerMove(position1);
+                  humanMove = firstGame.ComputerMove(position1);
                   if (humanMove == position7)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position7);
+                     Lose(ref gameStatus, ref firstGame, position7);
                   }
                }
                else
                {
-                  Lose(position2);
+                  Lose(ref gameStatus, ref firstGame, position2);
                }
             }
             else if (humanMove == position5)
             {
-               humanMove = ComputerMove(position7);
+               humanMove = firstGame.ComputerMove(position7);
                if (humanMove == position1)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position6)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position6);
+                     Lose(ref gameStatus, ref firstGame, position6);
                   }
                }
                else
                {
-                  Lose(position1);
+                  Lose(ref gameStatus, ref firstGame, position1);
                }
             }
             else if (humanMove == position6)
             {
-               humanMove = ComputerMove(position3);
+               humanMove = firstGame.ComputerMove(position3);
                if (humanMove == position5)
                {
-                  humanMove = ComputerMove(position7);
+                  humanMove = firstGame.ComputerMove(position7);
                   if (humanMove == position1)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position1);
+                     Lose(ref gameStatus, ref firstGame, position1);
                   }
                }
                else
                {
-                  Lose(position5);
+                  Lose(ref gameStatus, ref firstGame, position5);
                }
             }
             else if (humanMove == position7)
             {
-               humanMove = ComputerMove(position5);
+               humanMove = firstGame.ComputerMove(position5);
                if (humanMove == position3)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position1);
-                     Tie();
+                     firstGame.ComputerMove(position1);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position2);
+                     Lose(ref gameStatus, ref firstGame, position2);
                   }
                }
                else
                {
-                  Lose(position3);
+                  Lose(ref gameStatus, ref firstGame, position3);
                }
             }
             else if (humanMove == position8)
             {
-               humanMove = ComputerMove(position1);
+               humanMove = firstGame.ComputerMove(position1);
                if (humanMove == position7)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position2);
+                     Lose(ref gameStatus, ref firstGame, position2);
                   }
                }
                else
                {
-                  Lose(position7);
+                  Lose(ref gameStatus, ref firstGame, position7);
                }
             }
          }
@@ -328,439 +327,439 @@ namespace TicTacToe
                position7 = 1;
                position8 = 0;
             }
-            humanMove = ComputerMove(position4);
+            humanMove = firstGame.ComputerMove(position4);
             if (humanMove == position0)
             {
-               humanMove = ComputerMove(position2);
+               humanMove = firstGame.ComputerMove(position2);
                if (humanMove == position6)
                {
-                  humanMove = ComputerMove(position3);
+                  humanMove = firstGame.ComputerMove(position3);
                   if (humanMove == position5)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position5);
+                     Lose(ref gameStatus, ref firstGame, position5);
                   }
                }
                else
                {
-                  Lose(position6);
+                  Lose(ref gameStatus, ref firstGame, position6);
                }
             }
             else if (humanMove == position2)
             {
-               humanMove = ComputerMove(position0);
+               humanMove = firstGame.ComputerMove(position0);
                if (humanMove == position8)
                {
-                  humanMove = ComputerMove(position5);
+                  humanMove = firstGame.ComputerMove(position5);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position3);
+                     Lose(ref gameStatus, ref firstGame, position3);
                   }
                }
                else
                {
-                  Lose(position8);
+                  Lose(ref gameStatus, ref firstGame, position8);
                }
             }
             else if (humanMove == position3)
             {
-               humanMove = ComputerMove(position6);
+               humanMove = firstGame.ComputerMove(position6);
                if (humanMove == position2)
                {
-                  humanMove = ComputerMove(position0);
+                  humanMove = firstGame.ComputerMove(position0);
                   if (humanMove == position8)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position8);
+                     Lose(ref gameStatus, ref firstGame, position8);
                   }
                }
                else
                {
-                  Lose(position2);
+                  Lose(ref gameStatus, ref firstGame, position2);
                }
             }
             else if (humanMove == position5)
             {
-               humanMove = ComputerMove(position8);
+               humanMove = firstGame.ComputerMove(position8);
                if (humanMove == position0)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position6)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position6);
+                     Lose(ref gameStatus, ref firstGame, position6);
                   }
                }
                else
                {
-                  Lose(position0);
+                  Lose(ref gameStatus, ref firstGame, position0);
                }
             }
             else if (humanMove == position6)
             {
-               humanMove = ComputerMove(position3);
+               humanMove = firstGame.ComputerMove(position3);
                if (humanMove == position5)
                {
-                  humanMove = ComputerMove(position8);
+                  humanMove = firstGame.ComputerMove(position8);
                   if (humanMove == position0)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position0);
+                     Lose(ref gameStatus, ref firstGame, position0);
                   }
                }
                else
                {
-                  Lose(position5);
+                  Lose(ref gameStatus, ref firstGame, position5);
                }
             }
             else if (humanMove == position7)
             {
-               humanMove = ComputerMove(position8);
+               humanMove = firstGame.ComputerMove(position8);
                if (humanMove == position0)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position5)
                   {
-                     Lose(position6);
+                     Lose(ref gameStatus, ref firstGame, position6);
                   }
                   else
                   {
-                     Lose(position5);
+                     Lose(ref gameStatus, ref firstGame, position5);
                   }
                }
                else
                {
-                  Lose(position0);
+                  Lose(ref gameStatus, ref firstGame, position0);
                }
             }
             else if (humanMove == position8)
             {
-               humanMove = ComputerMove(position5);
+               humanMove = firstGame.ComputerMove(position5);
                if (humanMove == position3)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position0);
-                     Tie();
+                     firstGame.ComputerMove(position0);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position2);
+                     Lose(ref gameStatus, ref firstGame, position2);
                   }
                }
                else
                {
-                  Lose(position3);
+                  Lose(ref gameStatus, ref firstGame, position3);
                }
             }
          }
          //IF THE FIRST HUMAN MOVE IS THE CENTER
          else
          {
-            humanMove = ComputerMove(position0);
+            humanMove = firstGame.ComputerMove(position0);
             if (humanMove == position1)
             {
-               humanMove = ComputerMove(position7);
+               humanMove = firstGame.ComputerMove(position7);
                if (humanMove == position2)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position3)
                   {
-                     Lose(position8);
+                     Lose(ref gameStatus, ref firstGame, position8);
                   }
                   else
                   {
-                     Lose(position3);
+                     Lose(ref gameStatus, ref firstGame, position3);
                   }
                }
                else if (humanMove == position3)
                {
-                  humanMove = ComputerMove(position5);
+                  humanMove = firstGame.ComputerMove(position5);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position6);
-                     Tie();
+                     firstGame.ComputerMove(position6);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position6)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                }
                else if (humanMove == position5)
                {
-                  humanMove = ComputerMove(position3);
+                  humanMove = firstGame.ComputerMove(position3);
                   if (humanMove == position6)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position6);
+                     Lose(ref gameStatus, ref firstGame, position6);
                   }
                }
                else if (humanMove == position6)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position5)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position8)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                }
                else if (humanMove == position8)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position3);
+                     Lose(ref gameStatus, ref firstGame, position3);
                   }
                }
             }
             else if (humanMove == position2)
             {
-               humanMove = ComputerMove(position6);
+               humanMove = firstGame.ComputerMove(position6);
                if (humanMove == position3)
                {
-                  humanMove = ComputerMove(position5);
+                  humanMove = firstGame.ComputerMove(position5);
                   if (humanMove == position1)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position2)
                   {
-                     ComputerMove(position1);
-                     Tie();
+                     firstGame.ComputerMove(position1);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position8)
                   {
-                     ComputerMove(position1);
-                     Tie();
+                     firstGame.ComputerMove(position1);
+                     Tie(ref gameStatus);
                   }
                }
                else
                {
-                  Lose(position3);
+                  Lose(ref gameStatus, ref firstGame, position3);
                }
             }
             else if (humanMove == position3)
             {
-               humanMove = ComputerMove(position5);
+               humanMove = firstGame.ComputerMove(position5);
                if (humanMove == position1)
                {
-                  humanMove = ComputerMove(position7);
+                  humanMove = firstGame.ComputerMove(position7);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position6);
-                     Tie();
+                     firstGame.ComputerMove(position6);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position6)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position8)
                   {
-                     ComputerMove(position2);
-                     Tie();
+                     firstGame.ComputerMove(position2);
+                     Tie(ref gameStatus);
                   }
                }
                else if (humanMove == position2)
                {
-                  humanMove = ComputerMove(position6);
+                  humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position1)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position7)
                   {
-                     ComputerMove(position1);
-                     Tie();
+                     firstGame.ComputerMove(position1);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position8)
                   {
-                     ComputerMove(position1);
-                     Tie();
+                     firstGame.ComputerMove(position1);
+                     Tie(ref gameStatus);
                   }
                }
                else if (humanMove == position6)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position1)
                   {
-                     Lose(position8);
+                     Lose(ref gameStatus, ref firstGame, position8);
                   }
                   else
                   {
-                     Lose(position1);
+                     Lose(ref gameStatus, ref firstGame, position1);
                   }
                }
                else if (humanMove == position7)
                {
-                  humanMove = ComputerMove(position1);
+                  humanMove = firstGame.ComputerMove(position1);
                   if (humanMove == position2)
                   {
-                     ComputerMove(position6);
-                     Tie();
+                     firstGame.ComputerMove(position6);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position2);
+                     Lose(ref gameStatus, ref firstGame, position2);
                   }
                }
                else if (humanMove == position8)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position1)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position1);
+                     Lose(ref gameStatus, ref firstGame, position1);
                   }
                }
             }
             else if (humanMove == position5)
             {
-               humanMove = ComputerMove(position3);
+               humanMove = firstGame.ComputerMove(position3);
                if (humanMove == position6)
                {
-                  humanMove = ComputerMove(position2);
+                  humanMove = firstGame.ComputerMove(position2);
                   if (humanMove == position1)
                   {
-                     ComputerMove(position7);
-                     Tie();
+                     firstGame.ComputerMove(position7);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position1);
+                     Lose(ref gameStatus, ref firstGame, position1);
                   }
                }
                else
                {
-                  Lose(position6);
+                  Lose(ref gameStatus, ref firstGame, position6);
                }
             }
             else if (humanMove == position6)
             {
-               humanMove = ComputerMove(position2);
+               humanMove = firstGame.ComputerMove(position2);
                if (humanMove == position1)
                {
-                  humanMove = ComputerMove(position7);
+                  humanMove = firstGame.ComputerMove(position7);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position5)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position8)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                }
                else
                {
-                  Lose(position1);
+                  Lose(ref gameStatus, ref firstGame, position1);
                }
             }
             else if (humanMove == position7)
             {
-               humanMove = ComputerMove(position1);
+               humanMove = firstGame.ComputerMove(position1);
                if (humanMove == position2)
                {
-                 humanMove = ComputerMove(position6);
+                 humanMove = firstGame.ComputerMove(position6);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else
                   {
-                     Lose(position3);
+                     Lose(ref gameStatus, ref firstGame, position3);
                   }
                }
                else
                {
-                  Lose(position2);
+                  Lose(ref gameStatus, ref firstGame, position2);
                }
             }
             else if (humanMove == position8)
             {
-               humanMove = ComputerMove(position2);
+               humanMove = firstGame.ComputerMove(position2);
                if (humanMove == position1)
                {
-                  humanMove = ComputerMove(position7);
+                  humanMove = firstGame.ComputerMove(position7);
                   if (humanMove == position3)
                   {
-                     ComputerMove(position5);
-                     Tie();
+                     firstGame.ComputerMove(position5);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position5)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                   else if (humanMove == position6)
                   {
-                     ComputerMove(position3);
-                     Tie();
+                     firstGame.ComputerMove(position3);
+                     Tie(ref gameStatus);
                   }
                }
                else
                {
-                  Lose(position1);
+                  Lose(ref gameStatus, ref firstGame, position1);
                }
             }
          }
