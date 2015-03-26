@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+//using System.Windows.Forms.KeyEventArgs;
 
 namespace TicTacToe
 { 
@@ -32,15 +33,35 @@ namespace TicTacToe
 
       public int GetMove()
       {
-         Console.Write("Where do you want to put your 'x' ?> ");
-         int humanMove = Convert.ToInt32(Console.ReadLine());
-         while (SetNewPiece(humanMove, Convert.ToChar('x')))
-         {
-            Console.WriteLine("That spot's already taken. ");
-            Console.Write("Where do you want to put your 'x' ?> ");
-            humanMove = Convert.ToInt32(Console.ReadLine());
-         }
+         int humanMove = 0;
+         bool continueLoop = true;
+         do
+         {  
+            try
+            {
+               Console.Write("Where do you want to put your 'x'?> ");
+               string entry = Console.ReadLine();
+      /*       if (entry == "q")
+               {
+                  Application.Exit();
+               }
+*/       
+               humanMove = Convert.ToInt32(entry);
+               continueLoop = false;
+               while (SetNewPiece(humanMove, Convert.ToChar('x')))
+               {
+                  Console.WriteLine("That spot's already taken. ");
+                  Console.Write("Where do you want to put your 'x' ?> ");
+                  humanMove = Convert.ToInt32(Console.ReadLine());
+               }
 
+               return humanMove;
+            }
+            catch (FormatException)
+            {
+               Console.WriteLine("\nI don't think that's right. \nTry typing the integer of a free position on the board.\n");
+            }
+         } while(continueLoop);
          return humanMove;
       }
 
@@ -61,9 +82,7 @@ namespace TicTacToe
 
       public int ComputerMove(int position)
       {
-         Thread.Sleep(1000);
          Console.WriteLine("It's my turn.");
-         Thread.Sleep(2000);
          SetNewPiece(position, Convert.ToChar("o"));
          int humanMove = GetMove();
          return humanMove;
