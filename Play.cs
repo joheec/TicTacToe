@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-//using System.Windows.Forms.KeyEventArgs;
 
 namespace TicTacToe
 { 
@@ -39,22 +37,18 @@ namespace TicTacToe
          {  
             try
             {
-               Console.Write("Where do you want to put your 'x'?> ");
-               string entry = Console.ReadLine();
-      /*       if (entry == "q")
-               {
-                  Application.Exit();
-               }
-*/       
-               humanMove = Convert.ToInt32(entry);
-               continueLoop = false;
+               Console.Write("Where do you want to put your 'x'?> ");     
+               humanMove = Convert.ToInt32(Console.ReadLine());
+
                while (SetNewPiece(humanMove, Convert.ToChar('x')))
                {
                   Console.WriteLine("That spot's already taken. ");
+                  DrawBoard();
                   Console.Write("Where do you want to put your 'x' ?> ");
                   humanMove = Convert.ToInt32(Console.ReadLine());
                }
 
+               continueLoop = false;
                return humanMove;
             }
             catch (FormatException)
@@ -69,21 +63,20 @@ namespace TicTacToe
       {
          if (pieces[position] == Convert.ToChar('x') || pieces[position] == Convert.ToChar('o'))
          {
-            DrawBoard();
             return true;
          }
          else
          {
             pieces[position] = pieceType;
-            DrawBoard();
             return false;
          }
       }
 
       public int ComputerMove(int position)
       {
-         Console.WriteLine("It's my turn.");
+         Console.WriteLine("\nIt's my turn.");
          SetNewPiece(position, Convert.ToChar("o"));
+         DrawBoard();
          int humanMove = GetMove();
          return humanMove;
       }
