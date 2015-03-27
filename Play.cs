@@ -37,8 +37,9 @@ namespace TicTacToe
          {  
             try
             {
-               Console.Write("Where do you want to put your 'x'?> ");     
+               Console.Write("Where do you want to put your 'x'? Or type CtrlZ to quit> ");     
                humanMove = Convert.ToInt32(Console.ReadLine());
+               pieces[humanMove] = pieces[humanMove];
 
                while (SetNewPiece(humanMove, Convert.ToChar('x')))
                {
@@ -52,6 +53,10 @@ namespace TicTacToe
                return humanMove;
             }
             catch (FormatException)
+            {
+               Console.WriteLine("\nI don't think that's right. \nTry typing the integer of a free position on the board.\n");
+            }
+            catch (IndexOutOfRangeException)
             {
                Console.WriteLine("\nI don't think that's right. \nTry typing the integer of a free position on the board.\n");
             }
