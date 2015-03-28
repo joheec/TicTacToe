@@ -780,6 +780,7 @@ namespace TicTacToe
                }
             }
          }
+         firstGame.DrawBoard();
          switch (gameStatus)
          {
             case Status.TIE:
